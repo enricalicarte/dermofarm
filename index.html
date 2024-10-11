@@ -84,6 +84,7 @@
             justify-content: center;
             gap: 20px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .product-item, .award-item {
@@ -126,9 +127,46 @@
         footer .social-media a:hover {
             color: #f39c12;
         }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-section h2 {
+                font-size: 2em;
+            }
+
+            .product-item, .award-item {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h2 {
+                font-size: 1.8em;
+            }
+
+            .products-section, .about-section, .team-section, .awards-section {
+                padding: 20px 10px;
+            }
+
+            .product-item, .award-item {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            footer .social-media a {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
-     <script>
+
+         <script>
 window.embeddedChatbotConfig = {
 chatbotId: "lkMSllLwwTuEHTrXiZexV",
 domain: "www.chatbase.co"
@@ -140,6 +178,7 @@ chatbotId="lkMSllLwwTuEHTrXiZexV"
 domain="www.chatbase.co"
 defer>
 </script>
+
 <body>
     <header>
         <div class="header-container">
@@ -238,4 +277,3 @@ defer>
 </body>
 </html>
 
-   
