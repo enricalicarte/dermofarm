@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dermofarm - Innovación en el cuidado de la salud y la piel">
+    <title>Dermofarm - Innovación en salud y bienestar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #0066b2;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #004d8a;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background-color: #003366;
+            border-radius: 5px;
+        }
+        .hero {
+            background: url('hero-image.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .section {
+            padding: 50px;
+            text-align: center;
+        }
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .product-card {
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .product-card h3 {
+            color: #0066b2;
+        }
+        .contact-section {
+            background-color: #0066b2;
+            color: white;
+            padding: 50px;
+        }
+        footer {
+            background-color: #004d8a;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dermofarm</h1>
+        <p>Innovación en salud y bienestar</p>
+    </header>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Productos</a>
+        <a href="#">Investigación</a>
+        <a href="#">Contacto</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Innovando en el cuidado de la piel</h1>
+    </section>
+
+    <section class="section">
+        <h2>Nuestros productos destacados</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="product1.jpg" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>Descripción breve del producto 1.</p>
+            </div>
+            <div class="product-card">
+                <img src="product2.jpg" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>Descripción breve del producto 2.</p>
+            </div>
+            <div class="product-card">
+                <img src="product3.jpg" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>Descripción breve del producto 3.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Contáctanos</h2>
+        <p>Si tienes alguna pregunta, no dudes en comunicarte con nosotros.</p>
+        <a href="mailto:contacto@dermofarm.com" style="color:white;">contacto@dermofarm.com</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Dermofarm. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
