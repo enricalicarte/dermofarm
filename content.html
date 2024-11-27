@@ -18,6 +18,15 @@
             border: none;
             min-height: 700px;
         }
+        .overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Ajusta según el tamaño que necesites */
+            background: #f4f4f4; /* Color del overlay para coincidir con el fondo */
+            z-index: 1000; /* Asegura que esté por encima del iframe */
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -39,5 +48,6 @@
 </head>
 <body>
     <iframe id="iframe" src=""></iframe>
+    <div class="overlay"></div> <!-- Elemento para cubrir la parte inferior -->
 </body>
 </html>
