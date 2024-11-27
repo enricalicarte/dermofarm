@@ -3,97 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asistente Virtual Dermofarm</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Acceso al Asistente</title>
     <style>
-        /* CSS para web mobile first y minimalista */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body, html {
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #brand-selector, iframe {
-            display: none;
-        }
-
-        .container {
+        /* Estilo básico */
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
         }
-
-        select, button {
-            font-size: 16px;
+        .container {
+            text-align: center;
+        }
+        input, select, button {
             padding: 10px;
             margin: 10px;
+            font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-
-        iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
     </style>
     <script>
-        // Solicitar una contraseña para acceder a la página
-        document.addEventListener("DOMContentLoaded", function () {
-            let password = "dermofarm2024"; // Cambia esta contraseña a la que desees
-            let userPassword = prompt("Por favor, ingresa la contraseña para acceder:");
-            
-            if (userPassword !== password) {
-                alert("Contraseña incorrecta. No tienes permiso para acceder.");
-                window.location.href = "https://www.google.com"; // Redireccionar si la contraseña es incorrecta
-            } else {
-                document.getElementById("brand-selector").style.display = "flex";
-            }
-        });
+        function verifyPassword() {
+            const password = "dermofarm2024"; // Contraseña
+            const userPassword = document.getElementById("password").value;
 
-        // Función para mostrar el iframe según la marca seleccionada
-        function loadBrand() {
-            const iframe = document.querySelector("iframe");
+            if (userPassword === password) {
+                document.getElementById("selector-container").style.display = "block";
+                document.getElementById("password-container").style.display = "none";
+            } else {
+                alert("Contraseña incorrecta. Inténtalo de nuevo.");
+            }
+        }
+
+        function navigateToBrand() {
             const selectedBrand = document.getElementById("brand").value;
 
             if (selectedBrand) {
-                iframe.src = selectedBrand;
-                iframe.style.display = "block";
-                document.getElementById("brand-selector").style.display = "none";
+                window.location.href = `content.html?brand=${encodeURIComponent(selectedBrand)}`;
+            } else {
+                alert("Por favor, selecciona una marca.");
             }
         }
     </script>
 </head>
 <body>
-    <!-- Selector de marcas -->
-    <div id="brand-selector" class="container">
-        <h1>Selecciona la marca:</h1>
+    <div class="container" id="password-container">
+        <h1>Introduce la contraseña</h1>
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="verifyPassword()">Ingresar</button>
+    </div>
+
+    <div class="container" id="selector-container" style="display: none;">
+        <h1>Selecciona la marca</h1>
         <select id="brand">
             <option value="" disabled selected>Elige una opción</option>
             <option value="https://www.chatbase.co/chatbot-iframe/BLOiEwe-Ogr-assM_om5A">Sensilis</option>
             <option value="https://www.chatbase.co/chatbot-iframe/another-brand">Rilastil</option>
             <option value="https://www.chatbase.co/chatbot-iframe/another-brand2">Cumlaude Lab</option>
         </select>
-        <button onclick="loadBrand()">Acceder</button>
+        <button onclick="navigateToBrand()">Acceder</button>
     </div>
-
-    <!-- Iframe dinámico -->
-    <iframe src="" frameborder="0"></iframe>
 </body>
 </html>
