@@ -5,60 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso al Asistente</title>
     <style>
-        /* Estilo básico */
-        body {
+        /* Estilo global */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff; /* Fondo blanco del header */
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            max-height: 60px; /* Ajustar tamaño del logo */
+        }
+
+        /* Contenedor principal */
+        .main {
+            display: flex;
+            height: 100%;
+        }
+
+        /* Mitad izquierda */
+        .left-section {
+            flex: 1;
+            background-color: #f5f7fa; /* Gris claro */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: url('https://www.dermofarm.com/wp-content/uploads/2020/12/SLIDER_03.1_1920x910px.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-        }
-        header {
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            text-align: center;
-        }
-        header img {
-            max-width: 200px;
-            height: auto;
-        }
-        .container {
-            text-align: center;
-            background: rgba(121, 155, 185, 0.9); /* Fondo semitransparente usando #799bb9 */
             padding: 20px;
+        }
+
+        .login-container {
+            background-color: #ffffff; /* Fondo blanco */
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
         }
+
         h1 {
-            color: #9abbd8; /* Título en #9abbd8 */
+            color: #799bb9; /* Color corporativo */
+            margin-bottom: 20px;
         }
+
         input, select, button {
             padding: 10px;
-            margin: 10px;
+            margin: 10px 0;
             font-size: 16px;
             border-radius: 5px;
-            border: 1px solid #ffffff; /* Bordes blancos */
-            width: 80%;
+            border: 1px solid #ccc;
+            width: 100%;
             max-width: 300px;
         }
+
         input, select {
-            background-color: #799bb9; /* Fondo de los campos en #799bb9 */
-            color: #ffffff; /* Texto blanco */
+            background-color: #f9f9f9; /* Fondo claro */
+            color: #333; /* Texto oscuro */
         }
+
         button {
-            background-color: #9abbd8; /* Fondo del botón en #9abbd8 */
-            color: #ffffff;
+            background-color: #9abbd8; /* Azul corporativo */
+            color: #ffffff; /* Texto blanco */
             border: none;
             cursor: pointer;
+            font-weight: bold;
         }
+
         button:hover {
-            background-color: #799bb9; /* Hover en #799bb9 */
+            background-color: #799bb9; /* Hover con tono más oscuro */
+        }
+
+        /* Mitad derecha */
+        .right-section {
+            flex: 1;
+            background: url('https://www.dermofarm.com/wp-content/uploads/2020/12/SLIDER_03.1_1920x910px.jpg') no-repeat center center;
+            background-size: cover;
         }
     </style>
     <script>
@@ -89,21 +122,29 @@
     <header>
         <img src="https://www.dermofarm.com/wp-content/themes/dermofarm/assets/logo/logo.png" alt="Logo Dermofarm">
     </header>
-    <div class="container" id="password-container">
-        <h1>Introduce la contraseña</h1>
-        <input type="password" id="password" placeholder="Contraseña">
-        <button onclick="verifyPassword()">Ingresar</button>
-    </div>
+    <div class="main">
+        <!-- Mitad izquierda -->
+        <div class="left-section">
+            <div class="login-container" id="password-container">
+                <h1>Introduce la contraseña</h1>
+                <input type="password" id="password" placeholder="Contraseña">
+                <button onclick="verifyPassword()">Ingresar</button>
+            </div>
 
-    <div class="container" id="selector-container" style="display: none;">
-        <h1>Selecciona la marca</h1>
-        <select id="brand">
-            <option value="" disabled selected>Elige una opción</option>
-            <option value="https://www.chatbase.co/chatbot-iframe/BLOiEwe-Ogr-assM_om5A">Cumlaude Lab</option>
-            <option value="https://www.chatbase.co/chatbot-iframe/another-brand">Rilastil</option>
-            <option value="https://www.chatbase.co/chatbot-iframe/another-brand2">Sensilis</option>
-        </select>
-        <button onclick="navigateToBrand()">Acceder</button>
+            <div class="login-container" id="selector-container" style="display: none;">
+                <h1>Selecciona la marca</h1>
+                <select id="brand">
+                    <option value="" disabled selected>Elige una opción</option>
+                    <option value="https://www.chatbase.co/chatbot-iframe/BLOiEwe-Ogr-assM_om5A">Cumlaude Lab</option>
+                    <option value="https://www.chatbase.co/chatbot-iframe/another-brand">Rilastil</option>
+                    <option value="https://www.chatbase.co/chatbot-iframe/another-brand2">Sensilis</option>
+                </select>
+                <button onclick="navigateToBrand()">Acceder</button>
+            </div>
+        </div>
+
+        <!-- Mitad derecha -->
+        <div class="right-section"></div>
     </div>
 </body>
 </html>
