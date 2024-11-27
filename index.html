@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Acceso al Asistente</title>
     <style>
-        /* Estilo global */
         body, html {
             margin: 0;
             padding: 0;
@@ -17,7 +16,6 @@
             overflow: hidden; /* Eliminar scroll */
         }
 
-        /* Header */
         header {
             background-color: #ffffff;
             padding: 10px 0;
@@ -29,7 +27,6 @@
             max-height: 60px;
         }
 
-        /* Contenedor principal */
         .main {
             display: flex;
             height: 100%;
@@ -37,7 +34,6 @@
             overflow: hidden; /* Eliminar scroll lateral */
         }
 
-        /* Mitad izquierda */
         .left-section {
             flex: 1;
             background-color: #f5f7fa;
@@ -46,7 +42,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            box-sizing: border-box; /* Asegura que el padding no cause desbordamientos */
+            box-sizing: border-box;
         }
 
         .welcome-text {
@@ -102,14 +98,12 @@
             background-color: #799bb9;
         }
 
-        /* Mitad derecha */
         .right-section {
             flex: 1;
             background: url('https://www.dermofarm.com/wp-content/uploads/2020/12/SLIDER_03.1_1920x910px.jpg') no-repeat center center;
             background-size: cover;
         }
 
-        /* Vista móvil */
         @media (max-width: 768px) {
             .main {
                 flex-direction: column;
@@ -120,12 +114,13 @@
             .left-section {
                 width: 100%;
                 padding: 30px;
-                overflow: hidden; /* Asegura que no haya scroll */
+                overflow: hidden;
             }
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
+        // Hash MD5 correcto de "3550"
         const passwordHash = "098f6bcd4621d373cade4e832627b4f6";
 
         function verifyPassword() {
@@ -156,7 +151,6 @@
         <img src="https://www.dermofarm.com/wp-content/themes/dermofarm/assets/logo/logo.png" alt="Logo Dermofarm">
     </header>
     <div class="main">
-        <!-- Mitad izquierda -->
         <div class="left-section">
             <div class="welcome-text">
                 <h2>Bienvenidos al Asistente de Ayuda</h2>
@@ -179,8 +173,6 @@
                 <button onclick="navigateToBrand()">Acceder</button>
             </div>
         </div>
-
-        <!-- Mitad derecha -->
         <div class="right-section"></div>
     </div>
 </body>
