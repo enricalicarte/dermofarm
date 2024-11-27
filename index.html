@@ -44,6 +44,18 @@
             background: #f4f4f4; /* El color de fondo del overlay para que coincida */
         }
     </style>
+    <script>
+        // Solicitar una contraseña para acceder a la página
+        document.addEventListener("DOMContentLoaded", function() {
+            let password = "dermofarm2024"; // Cambia esta contraseña a la que desees
+            let userPassword = prompt("Por favor, ingresa la contraseña para acceder:");
+
+            if (userPassword !== password) {
+                alert("Contraseña incorrecta. No tienes permiso para acceder.");
+                window.location.href = "https://www.google.com"; // Redireccionar si la contraseña es incorrecta
+            }
+        });
+    </script>
 </head>
 
 <body>
