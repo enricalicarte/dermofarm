@@ -14,6 +14,7 @@
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
+            overflow: hidden; /* Eliminar scroll */
         }
 
         /* Header */
@@ -32,6 +33,8 @@
         .main {
             display: flex;
             height: 100%;
+            width: 100%;
+            overflow: hidden; /* Eliminar scroll lateral */
         }
 
         /* Mitad izquierda */
@@ -43,6 +46,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            box-sizing: border-box; /* Asegura que el padding no cause desbordamientos */
         }
 
         .welcome-text {
@@ -116,6 +120,7 @@
             .left-section {
                 width: 100%;
                 padding: 30px;
+                overflow: hidden; /* Asegura que no haya scroll */
             }
         }
     </style>
