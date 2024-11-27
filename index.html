@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Eliminar scroll */
+            overflow: hidden;
         }
 
         header {
@@ -31,7 +31,7 @@
             display: flex;
             height: 100%;
             width: 100%;
-            overflow: hidden; /* Eliminar scroll lateral */
+            overflow: hidden;
         }
 
         .left-section {
@@ -118,13 +118,14 @@
             }
         }
     </style>
+    <!-- Cargar CryptoJS desde CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
-        // Hash MD5 correcto de "3550"
-        const passwordHash = "098f6bcd4621d373cade4e832627b4f6";
+        // Hash MD5 del password "3550" generado con CryptoJS
+        const passwordHash = "018dd1e07a2de4a08e6612341bf2323e";
 
         function verifyPassword() {
-            const userPassword = document.getElementById("password").value;
+            const userPassword = document.getElementById("password").value.trim();
             const userHash = CryptoJS.MD5(userPassword).toString();
 
             if (userHash === passwordHash) {
