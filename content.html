@@ -24,7 +24,11 @@
             const params = new URLSearchParams(window.location.search);
             const brandUrl = params.get("brand");
 
-            if (brandUrl) {
+            if (brandUrl === "https://www.chatbase.co/chatbot-iframe/another-brand" || 
+                brandUrl === "https://www.chatbase.co/chatbot-iframe/another-brand2") {
+                // Redirigir a la página de desarrollo si la marca aún no está habilitada
+                window.location.href = "development.html";
+            } else if (brandUrl) {
                 document.getElementById("iframe").src = brandUrl;
             } else {
                 alert("No se seleccionó una marca válida.");
