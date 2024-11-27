@@ -104,6 +104,20 @@
             background: url('https://www.dermofarm.com/wp-content/uploads/2020/12/SLIDER_03.1_1920x910px.jpg') no-repeat center center;
             background-size: cover;
         }
+
+        /* Vista móvil */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column; /* Cambiar a diseño vertical */
+            }
+            .right-section {
+                display: none; /* Ocultar la imagen de fondo */
+            }
+            .left-section {
+                width: 100%; /* Usar todo el ancho */
+                padding: 30px; /* Aumentar el espacio interior */
+            }
+        }
     </style>
     <script>
         function verifyPassword() {
