@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Acceso al Asistente</title>
     <style>
         /* Estilo global */
@@ -18,14 +18,14 @@
 
         /* Header */
         header {
-            background-color: #ffffff; /* Fondo blanco del header */
+            background-color: #ffffff;
             padding: 10px 0;
             text-align: center;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         header img {
-            max-height: 60px; /* Ajustar tamaño del logo */
+            max-height: 60px;
         }
 
         /* Contenedor principal */
@@ -37,7 +37,7 @@
         /* Mitad izquierda */
         .left-section {
             flex: 1;
-            background-color: #f5f7fa; /* Gris claro */
+            background-color: #f5f7fa;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,16 +48,16 @@
         .welcome-text {
             text-align: center;
             margin-bottom: 20px;
-            color: #333; /* Texto oscuro */
+            color: #333;
         }
 
         .welcome-text h2 {
-            color: #799bb9; /* Azul corporativo */
+            color: #799bb9;
             margin-bottom: 10px;
         }
 
         .login-container {
-            background-color: #ffffff; /* Fondo blanco */
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,7 @@
         }
 
         h1 {
-            color: #799bb9; /* Color corporativo */
+            color: #799bb9;
             margin-bottom: 20px;
         }
 
@@ -82,20 +82,20 @@
         }
 
         input, select {
-            background-color: #f9f9f9; /* Fondo claro */
-            color: #333; /* Texto oscuro */
+            background-color: #f9f9f9;
+            color: #333;
         }
 
         button {
-            background-color: #9abbd8; /* Azul corporativo */
-            color: #ffffff; /* Texto blanco */
+            background-color: #9abbd8;
+            color: #ffffff;
             border: none;
             cursor: pointer;
             font-weight: bold;
         }
 
         button:hover {
-            background-color: #799bb9; /* Hover con tono más oscuro */
+            background-color: #799bb9;
         }
 
         /* Mitad derecha */
@@ -108,23 +108,26 @@
         /* Vista móvil */
         @media (max-width: 768px) {
             .main {
-                flex-direction: column; /* Cambiar a diseño vertical */
+                flex-direction: column;
             }
             .right-section {
-                display: none; /* Ocultar la imagen de fondo */
+                display: none;
             }
             .left-section {
-                width: 100%; /* Usar todo el ancho */
-                padding: 30px; /* Aumentar el espacio interior */
+                width: 100%;
+                padding: 30px;
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
-        function verifyPassword() {
-            const password = "3550"; // Contraseña
-            const userPassword = document.getElementById("password").value;
+        const passwordHash = "098f6bcd4621d373cade4e832627b4f6";
 
-            if (userPassword === password) {
+        function verifyPassword() {
+            const userPassword = document.getElementById("password").value;
+            const userHash = CryptoJS.MD5(userPassword).toString();
+
+            if (userHash === passwordHash) {
                 document.getElementById("selector-container").style.display = "block";
                 document.getElementById("password-container").style.display = "none";
             } else {
