@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Vinculado a Marcas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e5ddd5;
+            color: #333;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        #container {
+            display: flex;
+            width: 100%;
+        }
+        #menu-toggle {
+            background: #799bb9;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #sidebar {
+            background: #ffffff;
+            color: #333;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+        #sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #001c50;
+        }
+        .brand-header {
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .conversation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .conversation-list.hidden {
+            display: none;
+        }
+        #main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f4f3f0;
+            padding: 15px;
+        }
+        #main-content h1 {
+            color: #001c50;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        #search-box {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        #brand-selector {
+            margin-right: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #ffffff;
+            color: #333;
+        }
+        #search-input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #search-button, #new-conversation-button, #clear-chat-button {
+            background: #001c50;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #chat-history {
+            flex: 1;
+            overflow-y: auto;
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chat-message {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            max-width: 70%;
+        }
+        .chat-message.bot {
+            text-align: left;
+            color: #ffffff;
+            background-color: #799bb9;
+            padding: 10px;
+            border-radius: 8px 8px 8px 0;
+            margin-right: auto;
+            border: 1px solid #b3e5fc;
+        }
+        .chat-message.user {
+            text-align: right;
+            color: #ffffff;
+            background-color: #9abbd8;
+            padding: 10px;
+            border-radius: 8px 8px 0 8px;
+            margin-left: auto;
+        }
+        a {
+            color: #128c7e;
+            text-decoration: none;
+        }
+        .italic {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Botón de menú hamburguesa -->
+        <button id="menu-toggle" aria-label="Abrir menú">☰</button>
+        <aside id="sidebar">
+            <h2>Historial</h2>
+            <nav>
+                <ul id="brand-list">
+                    <li>
+                        <div class="brand-header" data-brand="Cumlaude">Cumlaude</div>
+                        <ul class="conversation-list hidden" id="Cumlaude-list"></ul>
+                    </li>
+                    <li>
+                        <div class="brand-header" data-brand="Rilastil">Rilastil</div>
+                        <ul class="conversation-list hidden" id="Rilastil-list"></ul>
+                    </li>
+                    <li>
+                        <div class="brand-header" data-brand="Sensilis">Sensilis</div>
+                        <ul class="conversation-list hidden" id="Sensilis-list"></ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main id="main-content">
+            <h1>Chat Vinculado a Marcas</h1>
+            <div id="search-box">
+                <select id="brand-selector">
+                    <option value="cumlaude">Cumlaude Lab</option>
+                    <option value="rilastil">Rilastil</option>
+                    <option value="sensilis">Sensilis</option>
+                </select>
+                <input type="text" id="search-input" placeholder="Escribe tu mensaje aquí..." />
+                <button id="search-button">➔</button>
+                <button id="new-conversation-button">🔄</button>
+                <button id="clear-chat-button">🗑️ Limpiar chat</button>
+            </div>
+            <div id="chat-history">
+                <!-- Historial de chat actual -->
+            </div>
+        </main>
+    </div>
+    <script>
+        const chatHistory = document.getElementById("chat-history");
+        const brandSelector = document.getElementById("brand-selector");
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+        const clearChatButton = document.getElementById("clear-chat-button");
+
+        let currentBrand = brandSelector.value;
+
+        brandSelector.addEventListener("change", () => {
+            const selectedBrand = brandSelector.value;
+
+            if (currentBrand !== selectedBrand) {
+                currentBrand = selectedBrand;
+                chatHistory.innerHTML = ""; // Limpia el historial de mensajes
+                console.clear(); // Limpia la consola
+                console.log(`Cambio de marca a: ${selectedBrand}. Chat reiniciado.`);
+            }
+        });
+
+        clearChatButton.addEventListener("click", () => {
+            chatHistory.innerHTML = ""; // Limpia el historial de mensajes
+            console.clear(); // Limpia la consola
+            console.log("Historial de chat limpiado.");
+        });
+
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `chat-message ${sender}`;
+            if (sender === "bot") {
+                messageDiv.innerHTML = parseMessage(content);
+            } else {
+                messageDiv.textContent = content;
+            }
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function parseMessage(content) {
+            // Convierte enlaces en texto clicable
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            content = content.replace(urlRegex, '<a href="$1" target="_blank">$1</a>');
+
+            // Aplica cursiva a frases específicas
+            const italicRegex = /(Los enlaces que sean clicables y con un color adaptado\.)/g;
+            content = content.replace(italicRegex, '<span class="italic">$1</span>');
+
+            return content;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const message = searchInput.value.trim();
+            const selectedBrand = brandSelector.value;
+
+            if (!message) return;
+
+            console.log(`Mensaje enviado por el usuario (${selectedBrand}):`, message);
+
+            addMessage(message, "user");
+            searchInput.value = "";
+
+            try {
+                const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook-test/527dea54-5355-4717-bbb7-59ecd936269b", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message, brand: selectedBrand }),
+                });
+
+                console.log(`Estado de la respuesta (${selectedBrand}):`, response.status);
+
+                let botMessage;
+                const contentType = response.headers.get("content-type");
+
+                if (contentType && contentType.includes("application/json")) {
+                    const data = await response.json();
+                    console.log("Respuesta JSON:", data);
+                    botMessage = data.output || "Sin respuesta del servidor.";
+                } else {
+                    botMessage = await response.text();
+                    console.log("Respuesta de texto:", botMessage);
+                }
+
+                addMessage(botMessage, "bot");
+            } catch (error) {
+                console.error(`Error al conectar con el servidor (${selectedBrand}):`, error);
+                addMessage(`Error al conectar con el servidor para ${selectedBrand}.`, "bot");
+            }
+        }
+
+        searchInput.addEventListener("keypress", handleKeyPress);
+        searchButton.addEventListener("click", sendMessage);
+    </script>
+</body>
+</html>
