@@ -6,146 +6,138 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 #container {
     display: flex;
     width: 100%;
 }
-#sidebar {
-    background: #ffffff;
-    color: #333;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    border-right: 1px solid #ddd;
-    overflow-y: auto;
-}
-#sidebar h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #001c50;
-}
-.brand-block {
-    margin-bottom: 20px;
-    background: #f4f3f0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.brand-header {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    color: #001c50;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.brand-header:hover {
-    color: #799bb9;
-}
-.conversation-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: none;
-}
-.conversation-item {
-    cursor: pointer;
-    margin: 5px 0;
-    padding: 8px;
-    background: #ffffff;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    transition: background 0.3s;
-}
-.conversation-item:hover {
-    background: #f0f0f0;
-}
+
 #main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f3f0;
     padding: 15px;
+    background: #f4f3f0;
 }
+
 #main-content h1 {
     color: #001c50;
-    font-size: 24px;
     margin-bottom: 15px;
 }
+
 #search-box {
     display: flex;
-    margin-bottom: 15px;
+    align-items: center; /* Alinear verticalmente */
+    gap: 10px; /* Espaciado entre elementos */
 }
-#brand-selector {
-    margin-right: 5px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #ffffff;
-    color: #333;
-}
+
 #search-input {
-    flex: 1;
+    flex: 1; /* Ocupa todo el ancho disponible */
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
+#brand-selector {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px; /* Mantiene un tamaño razonable */
+}
+
 #search-button, #clear-chat-button {
     background: #001c50;
     color: white;
-    border: none;
     padding: 10px;
-    margin-left: 5px;
+    border: none;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 4px;
 }
+
 #chat-history {
     flex: 1;
-    overflow-y: auto;
-    background: #ffffff;
-    padding: 15px;
+    background: white;
+    padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    line-height: 1.5;
-    max-height: 80%;
-    white-space: normal;
-    word-wrap: break-word;
-    text-align: left;
+    overflow-y: auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
+
 .chat-message {
     margin-bottom: 15px;
     display: block;
-    align-items: flex-start;
-    max-width: 100%;
-    white-space: normal;
 }
-.chat-message.bot {
-    text-align: left;
-    background-color: #f9f9f9;
-    padding: 12px;
-    border-radius: 10px 10px 10px 0;
-    margin-right: auto;
-    border: 1px solid #cccccc;
-}
+
 .chat-message.user {
     text-align: right;
     background-color: #d1ecf1;
-    padding: 12px;
+    padding: 10px;
     border-radius: 10px 10px 0 10px;
-    margin-left: auto;
     border: 1px solid #17a2b8;
 }
-.chat-message a {
-    color: #007bff;
-    text-decoration: none;
+
+.chat-message.bot {
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+    border: 1px solid #cccccc;
 }
-.chat-message a:hover {
-    text-decoration: underline;
-    color: #0056b3;
+
+.star-rating {
+    margin-top: 10px;
+    display: flex;
+}
+
+.star-rating .star {
+    cursor: pointer;
+    font-size: 20px;
+    color: #cccccc;
+}
+
+.star-rating .star.selected {
+    color: #ffd700;
+}
+
+.feedback-box {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* display: none;  Oculto por defecto */
+}
+
+.feedback-box textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.feedback-box button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.feedback-box button.submit {
+    background: #001c50;
+    color: white;
+}
+
+.feedback-box button.cancel {
+    background: #ddd;
+    color: black;
 }
