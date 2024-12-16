@@ -21,7 +21,7 @@ async function sendMessage() {
     const loadingMessage = addMessage("Escribiendo...", "bot");
 
     try {
-        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook-test/527dea54-5355-4717-bbb7-59ecd936269b", {
+        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook/527dea54-5355-4717-bbb7-59ecd936269b", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -57,7 +57,7 @@ async function sendMessage() {
 // Enviar valoración al Webhook
 async function sendRating(question, answer, rating, comment = null) {
     try {
-        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook-test/527dea54-5355-4717-bbb7-59ecd936269b", {
+        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook/527dea54-5355-4717-bbb7-59ecd936269b", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -117,10 +117,10 @@ function addStarRating(parentElement, answer) {
             updateStarRating(starContainer, rating);
             console.log(`Valoración seleccionada: ${rating}`);
 
-            if (rating <= 3) {
+            if (rating <= 5) {
                 showFeedbackBox(parentElement, question, answer, rating); // Mostrar caja de comentarios
             } else {
-                sendRating(question, answer, rating); // Enviar directamente si la valoración es 4 o 5
+              
             }
         });
 
