@@ -71,7 +71,7 @@
             margin-bottom: 20px;
         }
 
-        input, select, button {
+        input, button {
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
@@ -81,7 +81,7 @@
             max-width: 300px;
         }
 
-        input, select {
+        input {
             background-color: #f9f9f9;
             color: #333;
         }
@@ -129,20 +129,10 @@
             const userHash = CryptoJS.MD5(userPassword).toString();
 
             if (userHash === passwordHash) {
-                document.getElementById("selector-container").style.display = "block";
-                document.getElementById("password-container").style.display = "none";
+                alert("Acceso concedido");
+                // Redirigir o realizar otra acción aquí
             } else {
                 alert("Contraseña incorrecta. Inténtalo de nuevo.");
-            }
-        }
-
-        function navigateToBrand() {
-            const selectedBrand = document.getElementById("brand").value;
-
-            if (selectedBrand) {
-                window.location.href = `content.html?brand=${encodeURIComponent(selectedBrand)}`;
-            } else {
-                alert("Por favor, selecciona una marca.");
             }
         }
     </script>
@@ -161,17 +151,6 @@
                 <h1>Introduce la contraseña</h1>
                 <input type="password" id="password" placeholder="Contraseña">
                 <button onclick="verifyPassword()">Ingresar</button>
-            </div>
-
-            <div class="login-container" id="selector-container" style="display: none;">
-                <h1>Selecciona la marca</h1>
-                <select id="brand">
-                    <option value="" disabled selected>Elige una opción</option>
-                    <option value="https://www.chatbase.co/chatbot-iframe/BLOiEwe-Ogr-assM_om5A">Cumlaude Lab</option>
-                    <option value="https://www.chatbase.co/chatbot-iframe/another-brand">Rilastil</option>
-                    <option value="https://www.chatbase.co/chatbot-iframe/another-brand2">Sensilis</option>
-                </select>
-                <button onclick="navigateToBrand()">Acceder</button>
             </div>
         </div>
         <div class="right-section"></div>
