@@ -55,7 +55,7 @@ async function sendMessage() {
 }
 
 // Enviar valoración al Webhook
-async function sendRating(question, answer, rating) {
+async function sendRating(question, answer, rating, comment = null) {
     try {
         const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook-test/527dea54-5355-4717-bbb7-59ecd936269b", {
             method: "POST",
@@ -65,6 +65,7 @@ async function sendRating(question, answer, rating) {
                 question,
                 answer,
                 rating,
+                comment,
             }),
         });
 
@@ -116,14 +117,59 @@ function addStarRating(parentElement, answer) {
             updateStarRating(starContainer, rating);
             console.log(`Valoración seleccionada: ${rating}`);
 
-            // Enviar valoración al Webhook
-            sendRating(question, answer, rating);
+            if (rating <= 3) {
+                showFeedbackBox(parentElement, question, answer, rating); // Mostrar caja de comentarios
+            } else {
+                sendRating(question, answer, rating); // Enviar directamente si la valoración es 4 o 5
+            }
         });
 
         starContainer.appendChild(star);
     }
 
     parentElement.appendChild(starContainer);
+}
+
+// Mostrar caja de comentarios
+function showFeedbackBox(parentElement, question, answer, rating) {
+    // Evitar duplicar la caja
+    if (parentElement.querySelector(".feedback-box")) return;
+
+    // Crear la caja de comentarios
+    const feedbackBox = document.createElement("div");
+    feedbackBox.className = "feedback-box";
+
+    const textarea = document.createElement("textarea");
+    textarea.placeholder = "Escribe tus comentarios aquí...";
+    feedbackBox.appendChild(textarea);
+
+    // Botón Enviar
+    const submitButton = document.createElement("button");
+    submitButton.className = "submit";
+    submitButton.textContent = "Enviar";
+    submitButton.addEventListener("click", () => {
+        const comment = textarea.value.trim();
+        if (!comment) {
+            alert("Por favor, escribe un comentario antes de enviar.");
+            return;
+        }
+
+        // Enviar la valoración con comentario
+        sendRating(question, answer, rating, comment);
+        feedbackBox.remove(); // Eliminar la caja tras enviar
+    });
+    feedbackBox.appendChild(submitButton);
+
+    // Botón Cancelar
+    const cancelButton = document.createElement("button");
+    cancelButton.className = "cancel";
+    cancelButton.textContent = "Cancelar";
+    cancelButton.addEventListener("click", () => feedbackBox.remove());
+    feedbackBox.appendChild(cancelButton);
+
+    // Insertar la caja debajo del mensaje
+    parentElement.appendChild(feedbackBox);
+    feedbackBox.style.display = "block";
 }
 
 // Actualizar visualización de estrellas seleccionadas
