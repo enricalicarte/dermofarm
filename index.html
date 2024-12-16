@@ -129,8 +129,7 @@
             const userHash = CryptoJS.MD5(userPassword).toString();
 
             if (userHash === passwordHash) {
-                alert("Acceso concedido");
-                // Redirigir o realizar otra acción aquí
+                window.location.href = "content.html";
             } else {
                 alert("Contraseña incorrecta. Inténtalo de nuevo.");
             }
