@@ -8,6 +8,7 @@ const clearChatButton = document.getElementById("clear-chat-button");
 async function sendMessage() {
     const message = searchInput.value.trim();
     const selectedBrand = brandSelector.value;
+    const timestamp = new Date().toISOString(); // Fecha y hora en formato ISO 8601
 
     if (!message || message.length > 500) {
         alert("Por favor, escribe un mensaje válido.");
@@ -21,13 +22,14 @@ async function sendMessage() {
     const loadingMessage = addMessage("Escribiendo...", "bot");
 
     try {
-        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook/527dea54-5355-4717-bbb7-59ecd936269b", {
+        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook-test/527dea54-5355-4717-bbb7-59ecd936269b", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 type: "message",
                 message,
                 brand: selectedBrand,
+                timestamp, // Agregar la marca temporal
             }),
         });
 
@@ -56,8 +58,11 @@ async function sendMessage() {
 
 // Enviar valoración al Webhook
 async function sendRating(question, answer, rating, comment = null) {
+    const timestamp = new Date().toISOString(); // Fecha y hora en formato ISO 8601
+    const selectedBrand = brandSelector.value; // Obtener la marca seleccionada
+
     try {
-        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook/527dea54-5355-4717-bbb7-59ecd936269b", {
+        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook-test/527dea54-5355-4717-bbb7-59ecd936269b", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -66,6 +71,8 @@ async function sendRating(question, answer, rating, comment = null) {
                 answer,
                 rating,
                 comment,
+                brand: selectedBrand, // Agregar la marca
+                timestamp, // Agregar la marca temporal
             }),
         });
 
@@ -119,8 +126,6 @@ function addStarRating(parentElement, answer) {
 
             if (rating <= 5) {
                 showFeedbackBox(parentElement, question, answer, rating); // Mostrar caja de comentarios
-            } else {
-               
             }
         });
 
