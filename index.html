@@ -122,19 +122,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
         // Hash MD5 del password "" generado con CryptoJS
-        const passwordHash = "018dd1e07a2de4a08e6612341bf2323e";
+       const passwordHash = "018dd1e07a2de4a08e6612341bf2323e";
 
-        function verifyPassword() {
-            const userPassword = document.getElementById("password").value.trim();
-            const userHash = CryptoJS.MD5(userPassword).toString();
+    function verifyPassword() {
+        const userPassword = document.getElementById("password").value.trim();
+        const userHash = CryptoJS.MD5(userPassword).toString();
 
-            if (userHash === passwordHash) {
-                window.location.href = "content.html";
-            } else {
-                alert("Contraseña incorrecta. Inténtalo de nuevo.");
-            }
+        if (userHash === passwordHash) {
+            // Guardar un "token" en localStorage
+            localStorage.setItem("authenticated", "true");
+            window.location.href = "content.html";
+        } else {
+            alert("Contraseña incorrecta. Inténtalo de nuevo.");
         }
+    }
     </script>
+  
+
 </head>
 <body>
     <header>
