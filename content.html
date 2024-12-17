@@ -6,6 +6,21 @@
     <title>Asistente Dermofarm</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+    <script>
+    // Comprobar autenticación
+    if (localStorage.getItem("authenticated") !== "true") {
+        alert("Acceso no autorizado. Por favor, inicia sesión.");
+        window.location.href = "index.html"; // Redirigir
+    }
+</script>
+<button onclick="logout()">Cerrar sesión</button>
+<script>
+    function logout() {
+        localStorage.removeItem("authenticated");
+        window.location.href = "index.html";
+    }
+</script>
+
 <body>
     <div id="container">
         <main id="main-content">
