@@ -22,7 +22,7 @@ async function sendMessage() {
     const loadingMessage = addMessage("Escribiendo...", "bot");
 
     try {
-        const response = await fetch("https://multiplicaenric.app.n8n.cloud/webhook/527dea54-5355-4717-bbb7-59ecd936269b", {
+        const response = await fetch("https://kauai.app.n8n.cloud/webhook-test/9a5d7770-26dc-465c-a2eb-f90a870b3645", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
